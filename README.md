@@ -19,8 +19,8 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| item_id    | references | null: false, foreign_key: true |
-| user_id    | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -39,7 +39,7 @@
 | prefecture_id    | integer    | null: false                    |
 | shipping_date_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -56,6 +56,6 @@
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
-| order_id      | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
 - belongs_to :order
