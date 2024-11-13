@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   NAME_JAPANESE_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
-  NAME_KANA_REGEX = /\A[ァ-ヶ一]+\z/
+  NAME_KANA_REGEX = /\A[ァ-ヶー]+\z/
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
