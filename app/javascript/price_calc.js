@@ -1,4 +1,4 @@
-function price_calc (){
+const price_calc = () => {
   const itemPrice = document.getElementById("item-price");
   itemPrice.addEventListener("input", () => {
     const inputPrice = itemPrice.value;
@@ -11,3 +11,4 @@ function price_calc (){
 };
 
 window.addEventListener( 'turbo:load', price_calc);
+window.addEventListener( 'turbo:render', price_calc);
