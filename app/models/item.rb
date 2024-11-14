@@ -11,8 +11,8 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :name
-    validates :description
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
     validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :postage_id, numericality: { other_than: 1, message: "can't be blank" }
