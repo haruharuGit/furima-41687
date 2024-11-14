@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, only: [:new, :create]
+  before_action :move_to_sign_in, only: [:new, :create]
   def index
   end
 
@@ -23,9 +23,9 @@ class ItemsController < ApplicationController
                                  :price, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_index
+  def move_to_sign_in
     return if user_signed_in?
 
-    redirect_to action: :index
+    redirect_to '/users/sign_in'
   end
 end
