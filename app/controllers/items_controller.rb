@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
   def index
   end
 
@@ -21,11 +21,5 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :condition_id, :postage_id, :prefecture_id, :shipping_date_id,
                                  :price, :image).merge(user_id: current_user.id)
-  end
-
-  def move_to_sign_in
-    return if user_signed_in?
-
-    redirect_to '/users/sign_in'
   end
 end
