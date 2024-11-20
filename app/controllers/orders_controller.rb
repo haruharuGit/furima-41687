@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item
   before_action :check_order
   before_action :check_current_user
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-      @item = Item.find(params[:item_id])
       render :index, status: :unprocessable_entity
     end
   end
@@ -30,13 +29,15 @@ class OrdersController < ApplicationController
     )
   end
 
-  def check_order
+  def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def check_order
     redirect_to root_path if @item.order
   end
 
   def check_current_user
-    @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id
   end
 
