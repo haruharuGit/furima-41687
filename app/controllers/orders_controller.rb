@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_order
+  before_action :check_current_user
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
@@ -32,6 +33,11 @@ class OrdersController < ApplicationController
   def check_order
     @item = Item.find(params[:item_id])
     redirect_to root_path if @item.order
+  end
+
+  def check_current_user
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id
   end
 
   def pay_item
