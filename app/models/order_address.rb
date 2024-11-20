@@ -10,6 +10,7 @@ class OrderAddress
     validates :phone_number, length: { in: 10..11 }, numericality: { only_integer: true }
     validates :user_id
     validates :item_id
+    validates :token
   end
 
   def save
